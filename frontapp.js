@@ -1,4 +1,4 @@
-var Front = require('@frontapp/ui-sdk');
+//var Front = require('@frontapp/ui-sdk');
 
 let hasConversation;
 
