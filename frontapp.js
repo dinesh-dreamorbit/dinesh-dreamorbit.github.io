@@ -47,7 +47,6 @@ function resetValues()
 function displayConversationInfo(context, contextType)
 {
   const recepient = document.getElementById('recepient');
-  const teammate = document.getElementById('teammate'); //assignee
   const recepientemail = document.getElementById('recepientemail');
   const subject = document.getElementById('subject');
   const status = document.getElementById('convstatus'); //status
@@ -57,12 +56,10 @@ function displayConversationInfo(context, contextType)
   tags.textContent = '';
   
   let conversation = null;
-  teammate.textContent = context.teammate.name;
   recepient.textContent = context.teammate.name;
   recepientemail.textContent = context.teammate.email;
   sender.textContent = conversation.recepient.name;
   senderemail.textContent = conversation.recepient.email;
-
 
   console.log('Inside displayConversationInfo: '+JSON.stringify(context));
   if(contextType === 'multiConversations')
