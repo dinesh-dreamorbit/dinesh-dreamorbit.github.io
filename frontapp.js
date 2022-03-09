@@ -118,12 +118,19 @@ async function getDataFromPublicApi() {
 }
 
 async function getAvailableTagsFromFront() {
-  if (!latestContext) return;
+  if (!latestContext) return null;
 
-  const availableTags = document.getElementById("avtags");
   const tags = await latestContext.listTags();
+  console.log(
+    "Inside getAvailableTagsFromFront: available tags: " + JSON.stringify(tags)
+  );
+}
 
-  if (tags.results) {
+async function getAllTags() {
+  const tags = await getAvailableTagsFromFront();
+  const availableTags = document.getElementById("avtags");
+
+  if (tags && tags.results) {
     availableTags.textContent = tags.results
       .map(function (t) {
         return t.name;
@@ -133,23 +140,36 @@ async function getAvailableTagsFromFront() {
     availableTags.textContent = "-";
   }
   document.getElementById("availableTags").style.display = "block";
-
-  console.log(
-    "Inside getAvailableTagsFromFront: available tags: " + JSON.stringify(tags)
-  );
 }
 
 async function addNewTag() {
   if (!latestContext) return;
 
-  const newTag = document.getElementById("newTagName").value;
-  if (!newTag) {
-    console.log("addNewTag: No tag name entered.");
+  const enteredTag = document.getElementById("newTagName").value;
+  if (!enteredTag) {
+    console.log("removeTag: No tag name entered.");
+    return;
+  }
+
+  const allTags = await getAvailableTagsFromFront();
+  let tag;
+
+  if (allTags && allTags.results) {
+    tag = allTags.results.find((t) => t.name === enteredTag);
+    if (!tag) {
+      console.log(
+        "No corresponding tag found for the entered tag: " + enteredTag
+      );
+      return;
+    }
+  } else {
+    console.log("No tags found.");
     return;
   }
 
   let tagsToAdd = [];
-  tagsToAdd.push(newTag);
+  tagsToAdd.push(tag.id);
+
   await latestContext.tag(tagsToAdd);
 
   document.getElementById("newTagName").value = "";
@@ -158,14 +178,30 @@ async function addNewTag() {
 async function removeTag() {
   if (!latestContext) return;
 
-  const removeTag = document.getElementById("removeTagName").value;
-  if (!removeTag) {
+  const enteredTag = document.getElementById("removeTagName").value;
+  if (!enteredTag) {
     console.log("removeTag: No tag name entered.");
     return;
   }
-  
+
+  const allTags = await getAvailableTagsFromFront();
+  let tag;
+
+  if (allTags && allTags.results) {
+    tag = allTags.results.find((t) => t.name === enteredTag);
+    if (!tag) {
+      console.log(
+        "No corresponding tag found for the entered tag: " + enteredTag
+      );
+      return;
+    }
+  } else {
+    console.log("No tags found.");
+    return;
+  }
+
   let tagsToRemove = [];
-  tagsToRemove.push(removeTag);
+  tagsToRemove.push(tag.id);
 
   await latestContext.untag(tagsToRemove);
 
