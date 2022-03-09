@@ -46,8 +46,26 @@
         </p>
         <div class="btn-group-vertical">
           <a href="#" class="btn btn-primary m-2" id="goSomewhere">Open link</a>
-          <a href="#" class="btn btn-primary m-2" id="tag">Add Tag</a>
-          <a href="#" class="btn btn-primary m-2" id="untag">Remove Tag</a>
+          <!-- <div class="col-auto">
+            <label class="visually-hidden" for="autoSizingInput">Tag name</label>
+            <input type="text" class="form-control" id="autoSizingInput" placeholder="New tag name">
+          </div> -->
+          <!-- <div class="card border-secondary"  id='availableTags'>
+            <div class="card-header">New tag</div>
+            <div>
+              <input type="text" class="form-control" id="autoSizingInput" placeholder="New tag name"/>
+            </div>            
+          </div> -->
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="newTagName" placeholder="New tag name">
+            <!-- <label for="floatingInput">New tag name</label> -->
+          </div>
+          <a href="#" class="btn btn-primary m-2" id="tag" onclick="addNewTag()">Add Tag</a>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="removeTagName" placeholder="Tag to remove">
+            <!-- <label for="floatingInput">New tag name</label> -->
+          </div>
+          <a href="#" class="btn btn-primary m-2" id="untag" onclick="removeTag()">Remove Tag</a>
 
           <a
             href="#"
@@ -55,7 +73,7 @@
             id="getAllTags"
             title="Gets all the tags from Front API"
             onclick="getAvailableTagsFromFront()"
-            >Get all tags</a
+            >Get all tags <label class="form-control-sm">(From Front)</label></a
           >
           <div class="card border-secondary" style="max-width: 18rem;display: none;" id='availableTags'>
             <div class="card-header">Available Tags</div>
@@ -70,7 +88,7 @@
             id="anoyAPI"
             title="Gets the data from anonymous API"
             onclick="getDataFromPublicApi()"
-            >Get API data</a
+            >Get API data<label class="form-control-sm">(From anonymous API)</label></a
           >
           <div class="card border-secondary" style="max-width: 18rem;display: none;" id='weather'>
             <div class="card-header">Weather</div>

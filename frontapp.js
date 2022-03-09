@@ -138,3 +138,29 @@ async function getAvailableTagsFromFront() {
     "Inside getAvailableTagsFromFront: available tags: " + JSON.stringify(tags)
   );
 }
+
+async function addNewTag()
+{
+  if(!latestContext) return;
+
+  const newTag = document.getElementById("newTagName").textContent;
+  if(!newTag) {
+    console.log("addNewTag: No tag name entered.");
+    return;
+  }
+
+  await latestContext.tag(newTag);
+}
+
+async function removeTag()
+{
+  if(!latestContext) return;
+
+  const removeTag = document.getElementById("removeTagName").textContent;
+  if(!removeTag) {
+    console.log("removeTag: No tag name entered.");
+    return;
+  }
+
+  await latestContext.untag(removeTag);
+}
