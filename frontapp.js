@@ -157,7 +157,9 @@ async function addNewTag() {
   let tag;
 
   if (allTags && allTags.results) {
-    tag = allTags.results.find((t) => t.name === enteredTag);
+    tag = allTags.results.find(
+      (t) => t.name.toLowerCase() === enteredTag.toLowerCase()
+    );
     if (!tag) {
       console.log(
         "No corresponding tag found for the entered tag: " + enteredTag
@@ -190,7 +192,9 @@ async function removeTag() {
   let tag;
 
   if (allTags && allTags.results) {
-    tag = allTags.results.find((t) => t.name === enteredTag);
+    tag = allTags.results.find(
+      (t) => t.name.toLowerCase() === enteredTag.toLowerCase()
+    );
     if (!tag) {
       console.log(
         "No corresponding tag found for the entered tag: " + enteredTag
@@ -208,4 +212,22 @@ async function removeTag() {
   await latestContext.untag(tagsToRemove);
 
   document.getElementById("removeTagName").value = "";
+}
+
+/**
+ * Opens the url in the popup
+ * @returns Promise
+ */
+async function openUrl()
+{
+  const url = 'http://www.google.com';
+  if (!latestContext) return;
+
+  await latestContext.openUrlInPopup(url, {height: '100px',width: '100px' })
+}
+
+
+async function getDataFromAuthenticatedApi()
+{
+
 }

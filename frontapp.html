@@ -45,7 +45,14 @@
           nunc.
         </p>
         <div class="btn-group-vertical">
-          <a href="#" class="btn btn-primary m-2" id="goSomewhere">Open link</a>
+          <a
+            href="#"
+            class="btn btn-primary m-2"
+            id="openLink"
+            onclick="openUrl()"
+            title="Opens the url in a popup"
+            >Open link</a
+          >
 
           <div class="form-floating mb-3">
             <input
@@ -131,8 +138,19 @@
             class="btn btn-primary m-2"
             id="authAPI"
             title="Gets the data from authenticated API"
-            >Get data</a
+            onclick="getDataFromAuthenticatedApi()"
+            >Get data</a>
+            <div
+            class="card border-secondary"
+            style="max-width: 18rem; display: block"
+            id="apiData"
           >
+            <div class="card-header">API data</div>
+            <div>
+              <label class="label text-black-50 mr-2">FAK classes: </label
+              ><span class="card-body" id="avtags">Tag</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
