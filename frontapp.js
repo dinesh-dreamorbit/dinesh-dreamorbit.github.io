@@ -59,7 +59,9 @@ function displayConversationInfo(contextType) {
   recepient.textContent = latestContext.conversation.assignee.name;
   recepientemail.textContent = latestContext.conversation.assignee.email;
 
-  console.log("Inside displayConversationInfo: " + JSON.stringify(latestContext));
+  console.log(
+    "Inside displayConversationInfo: " + JSON.stringify(latestContext)
+  );
   if (contextType === "multiConversations") {
     conversation = latestContext.conversations[0];
   } else {
@@ -82,3 +84,36 @@ function displayConversationInfo(contextType) {
 function tagConversation() {}
 
 function untagConversation() {}
+
+async function getDataFromPublicApi() {
+  const city = 'Bangalore';
+  const url = "https://goweather.herokuapp.com/weather/"+city;
+  let httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = onReceiveAPIResponse;
+  httpRequest.open("GET", url);
+  httpRequest.send();
+
+  function onReceiveAPIResponse() {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      if (httpRequest.status === 200) {
+        console.log(httpRequest.responseText);
+        const weatherObj = JSON.parse(httpRequest.responseText);
+        console.log('weather: '+weatherObj.temperature);
+        console.log(httpRequest.responseText.temperature);
+
+        document.getElementById("city").textContent = city;
+        document.getElementById("temp").textContent = weatherObj.temperature;
+        document.getElementById("wind").textContent = weatherObj.wind;
+        document.getElementById("desc").textContent = weatherObj.description;
+
+        document.getElementById("weather").attributes.removeNamedItem('hidden');
+        
+
+      } else {
+        console.log('Error occurred while getting the data from API.');
+        document.getElementById("weather").attributes.setNamedItem('hidden');
+
+      }
+    }
+  }
+}

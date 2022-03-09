@@ -42,11 +42,55 @@
         </div>
         <p class="card-text" id="conv">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu mi
-          nunc. 
+          nunc.
         </p>
-        <a href="#" class="btn btn-primary" id="goSomewhere">Go somewhere</a>
-        <a href="#" class="btn btn-primary" id="tag">Add Tag</a>
-        <a href="#" class="btn btn-primary" id="untag">Remove Tag</a>
+        <div class="btn-group-vertical">
+          <a href="#" class="btn btn-primary m-2" id="goSomewhere">Open link</a>
+          <a href="#" class="btn btn-primary m-2" id="tag">Add Tag</a>
+          <a href="#" class="btn btn-primary m-2" id="untag">Remove Tag</a>
+
+          <a
+            href="#"
+            class="btn btn-primary m-2"
+            id="getAllTags"
+            title="Gets all the tags from Front API"
+            >Get all tags</a
+          >
+          <a
+            href="#"
+            class="btn btn-primary m-2"
+            id="anoyAPI"
+            title="Gets the data from anonymous API"
+            onclick="getDataFromPublicApi()"
+            >Get API data</a
+          >
+          <div class="card border-secondary" style="max-width: 18rem;" id='weather' hidden>
+            <div class="card-header">Weather</div>
+            <div>
+              <label class="label text-black-50 mr-2">City: </label
+              ><span class="card-body" id="city">City</span>
+            </div>
+            <div>
+              <label class="label text-black-50 mr-2">Temperature: </label
+              ><span class="card-body" id="temp">Tag</span>
+            </div>
+            <div>
+              <label class="label text-black-50 mr-2">Wind: </label
+              ><span class="card-body" id="wind">Wind</span>
+            </div>
+            <div>
+              <label class="label text-black-50 mr-2">Description: </label
+              ><span class="card-body" id="desc">Tag</span>
+            </div>
+          </div>
+          <a
+            href="#"
+            class="btn btn-primary m-2"
+            id="authAPI"
+            title="Gets the data from authenticated API"
+            >Get data</a
+          >
+        </div>
       </div>
     </div>
 
