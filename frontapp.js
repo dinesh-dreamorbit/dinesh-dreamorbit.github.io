@@ -37,11 +37,11 @@ function displayConversationInfo(context, contextType)
   const teammate = document.getElementById('teammate'); //assignee
   // const subject = document.getElementById('subject');
   const status = document.getElementById('convstatus'); //status
-  const conversation = null;
+  let conversation = null;
   sender.textContent = '';
   teammate.textContent = context.teammate.name;
   sender.textContent = context.teammate.name;
-  
+  console.log('Inside displayConversationInfo: '+JSON.stringify(context));
   if(contextType === 'multiConversations')
   {
       conversation = context.conversations[0];
