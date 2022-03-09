@@ -218,16 +218,16 @@ async function removeTag() {
  * Opens the url in the popup
  * @returns Promise
  */
-async function openUrl()
-{
-  const url = 'http://www.google.com';
+async function openUrl() {
+  const url = "http://www.google.com";
   if (!latestContext) return;
 
-  await latestContext.openUrlInPopup(url, {height: '100px',width: '100px' })
+  await latestContext.openUrlInPopup(url, { height: 100, width: 100 });
 }
 
+async function getDataFromAuthenticatedApi() {}
 
-async function getDataFromAuthenticatedApi()
-{
 
-}
+window.addEventListener('DOMContentLoaded', (event) => {
+  console.log('DOM fully loaded and parsed');
+});
