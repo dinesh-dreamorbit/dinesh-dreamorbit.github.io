@@ -139,28 +139,30 @@ async function getAvailableTagsFromFront() {
   );
 }
 
-async function addNewTag()
-{
-  if(!latestContext) return;
+async function addNewTag() {
+  if (!latestContext) return;
 
-  const newTag = document.getElementById("newTagName").textContent;
-  if(!newTag) {
+  const newTag = document.getElementById("newTagName").value;
+  if (!newTag) {
     console.log("addNewTag: No tag name entered.");
     return;
   }
 
   await latestContext.tag(newTag);
+
+  document.getElementById("newTagName").value = "";
 }
 
-async function removeTag()
-{
-  if(!latestContext) return;
+async function removeTag() {
+  if (!latestContext) return;
 
-  const removeTag = document.getElementById("removeTagName").textContent;
-  if(!removeTag) {
+  const removeTag = document.getElementById("removeTagName").value;
+  if (!removeTag) {
     console.log("removeTag: No tag name entered.");
     return;
   }
 
   await latestContext.untag(removeTag);
+
+  document.getElementById("removeTagName").value = "";
 }
