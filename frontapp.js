@@ -56,8 +56,8 @@ function displayConversationInfo(contextType) {
   tags.textContent = "";
 
   let conversation = null;
-  recepient.textContent = latestContext.asignee.name;
-  recepientemail.textContent = latestContext.asignee.email;
+  recepient.textContent = latestContext.conversation.asignee.name;
+  recepientemail.textContent = latestContext.conversation.asignee.email;
 
   console.log("Inside displayConversationInfo: " + JSON.stringify(latestContext));
   if (contextType === "multiConversations") {
