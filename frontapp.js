@@ -46,8 +46,8 @@ function resetValues()
 
 function displayConversationInfo(context, contextType)
 {
-  const recepient = document.getElementById('recepient');
-  const recepientemail = document.getElementById('recepientemail');
+  const recepient = document.getElementById('recipient');
+  const recepientemail = document.getElementById('recipientemail');
   const subject = document.getElementById('subject');
   const status = document.getElementById('convstatus'); //status
   const sender = document.getElementById('sender'); //assignee
@@ -70,9 +70,9 @@ function displayConversationInfo(context, contextType)
   }
   status.textContent = conversation.status;
   subject.textContent = conversation.subject;
-  sender.textContent = conversation.recepient.name;
-  senderemail.textContent = conversation.recepient.email;
-  
+  sender.textContent = conversation.recipient.name;
+  senderemail.textContent = conversation.recipient.email;
+
   if(conversation.tags && conversation.tags.length)
   {
     tags.textContent = context.conversation.tags.map(function(k) {return k.name}).join(',');
