@@ -5,6 +5,7 @@ let latestContext;
 
 Front.contextUpdates.subscribe((context) => {
   latestContext = context;
+  document.getElementById("weather").attributes.setNamedItem('hidden');
   switch (context.type) {
     case "noConversation":
       console.log("No conversation selected");
@@ -116,4 +117,12 @@ async function getDataFromPublicApi() {
       }
     }
   }
+}
+
+async function getAvailableTagsFromFront()
+{
+  console.log("inside getAvailableTagsFromFront");
+  if(!latestContext) return;
+  const tags = await latestContext.listTags();
+  console.log('Inside getAvailableTagsFromFront: tags: '+JSON.stringify(tags));
 }
