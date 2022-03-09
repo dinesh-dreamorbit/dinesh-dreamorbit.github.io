@@ -124,6 +124,8 @@ async function getAvailableTagsFromFront() {
   console.log(
     "Inside getAvailableTagsFromFront: available tags: " + JSON.stringify(tags)
   );
+
+  return tags;
 }
 
 async function getAllTags() {
