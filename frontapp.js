@@ -56,14 +56,14 @@ function displayConversationInfo(contextType) {
   tags.textContent = "";
 
   let conversation = null;
-  recepient.textContent = this.latestContext.teammate.name;
-  recepientemail.textContent = this.latestContext.teammate.email;
+  recepient.textContent = latestContext.teammate.name;
+  recepientemail.textContent = latestContext.teammate.email;
 
-  console.log("Inside displayConversationInfo: " + JSON.stringify(this.latestContext));
+  console.log("Inside displayConversationInfo: " + JSON.stringify(latestContext));
   if (contextType === "multiConversations") {
-    conversation = this.latestContext.conversations[0];
+    conversation = latestContext.conversations[0];
   } else {
-    conversation = this.latestContext.conversation;
+    conversation = latestContext.conversation;
   }
   status.textContent = conversation.status;
   subject.textContent = conversation.subject;
@@ -71,7 +71,7 @@ function displayConversationInfo(contextType) {
   senderemail.textContent = conversation.recipient.email;
 
   if (conversation.tags && conversation.tags.length) {
-    tags.textContent = this.latestContext.conversation.tags
+    tags.textContent = conversation.tags
       .map(function (k) {
         return k.name;
       })
