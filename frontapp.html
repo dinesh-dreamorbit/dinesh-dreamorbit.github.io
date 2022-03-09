@@ -57,6 +57,13 @@
             onclick="getAvailableTagsFromFront()"
             >Get all tags</a
           >
+          <div class="card border-secondary" style="max-width: 18rem;display: none;" id='availableTags'>
+            <div class="card-header">Available Tags</div>
+            <div>
+              <label class="label text-black-50 mr-2">Tags: </label
+              ><span class="card-body" id="avtags">Tag</span>
+            </div>            
+          </div>
           <a
             href="#"
             class="btn btn-primary m-2"
@@ -65,7 +72,7 @@
             onclick="getDataFromPublicApi()"
             >Get API data</a
           >
-          <div class="card border-secondary" style="max-width: 18rem;" id='weather' hidden>
+          <div class="card border-secondary" style="max-width: 18rem;display: none;" id='weather'>
             <div class="card-header">Weather</div>
             <div>
               <label class="label text-black-50 mr-2">City: </label

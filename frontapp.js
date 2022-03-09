@@ -5,7 +5,9 @@ let latestContext;
 
 Front.contextUpdates.subscribe((context) => {
   latestContext = context;
-  document.getElementById("weather").attributes.setNamedItem('hidden');
+  document.getElementById("weather").style.display = "none";
+  document.getElementById("availableTags").style.display = "none";
+
   switch (context.type) {
     case "noConversation":
       console.log("No conversation selected");
@@ -87,8 +89,8 @@ function tagConversation() {}
 function untagConversation() {}
 
 async function getDataFromPublicApi() {
-  const city = 'Bangalore';
-  const url = "https://goweather.herokuapp.com/weather/"+city;
+  const city = "Bangalore";
+  const url = "https://goweather.herokuapp.com/weather/" + city;
   let httpRequest = new XMLHttpRequest();
   httpRequest.onreadystatechange = onReceiveAPIResponse;
   httpRequest.open("GET", url);
@@ -99,30 +101,40 @@ async function getDataFromPublicApi() {
       if (httpRequest.status === 200) {
         console.log(httpRequest.responseText);
         const weatherObj = JSON.parse(httpRequest.responseText);
-        console.log('weather: '+weatherObj.temperature);
+        console.log("weather: " + weatherObj.temperature);
         console.log(httpRequest.responseText.temperature);
 
         document.getElementById("city").textContent = city;
         document.getElementById("temp").textContent = weatherObj.temperature;
         document.getElementById("wind").textContent = weatherObj.wind;
         document.getElementById("desc").textContent = weatherObj.description;
-
-        document.getElementById("weather").attributes.removeNamedItem('hidden');
-        
-
+        document.getElementById("weather").style.display = "block";
       } else {
-        console.log('Error occurred while getting the data from API.');
-        document.getElementById("weather").attributes.setNamedItem('hidden');
-
+        console.log("Error occurred while getting the data from API.");
+        document.getElementById("weather").style.display = "none";
       }
     }
   }
 }
 
-async function getAvailableTagsFromFront()
-{
-  console.log("inside getAvailableTagsFromFront");
-  if(!latestContext) return;
+async function getAvailableTagsFromFront() {
+  if (!latestContext) return;
+
+  const availableTags = document.getElementById("avtags");
   const tags = await latestContext.listTags();
-  console.log('Inside getAvailableTagsFromFront: tags: '+JSON.stringify(tags));
+
+  if (tags.results) {
+    availableTags.textContent = tags.results
+      .map(function (t) {
+        return t.name;
+      })
+      .join(", ");
+  } else {
+    availableTags.textContent = "-";
+  }
+  document.getElementById("availableTags").style.display = "block";
+
+  console.log(
+    "Inside getAvailableTagsFromFront: available tags: " + JSON.stringify(tags)
+  );
 }
