@@ -25,22 +25,45 @@ Front.contextUpdates.subscribe(context => {
 
 function resetValues()
 {
-   const sender = document.getElementById('sender');
-   const teammate = document.getElementById('teammate');
-   sender.textContent = '';
-   teammate.textContent = '';
+  const recepient = document.getElementById('recepient');
+  const teammate = document.getElementById('teammate');
+  const recepientemail = document.getElementById('recepientemail');
+  const subject = document.getElementById('subject');
+  const status = document.getElementById('convstatus');
+  const sender = document.getElementById('sender'); 
+  const senderemail = document.getElementById('senderemail');
+  const tags = document.getElementById('tag');
+
+  recepient.textContent = '';
+  teammate.textContent = '';
+  recepientemail.textContent = '';
+  subject.textContent = '';
+  status.textContent = '';
+  sender.textContent = '';
+  senderemail.textContent = '';
+  tags.textContent = '';
 }
 
 function displayConversationInfo(context, contextType)
 {
-  const sender = document.getElementById('sender');
+  const recepient = document.getElementById('recepient');
   const teammate = document.getElementById('teammate'); //assignee
-  // const subject = document.getElementById('subject');
+  const recepientemail = document.getElementById('recepientemail');
+  const subject = document.getElementById('subject');
   const status = document.getElementById('convstatus'); //status
+  const sender = document.getElementById('sender'); //assignee
+  const senderemail = document.getElementById('senderemail');
+  const tags = document.getElementById('tag');
+  tags.textContent = '';
+  
   let conversation = null;
-  sender.textContent = '';
   teammate.textContent = context.teammate.name;
-  sender.textContent = context.teammate.name;
+  recepient.textContent = context.teammate.name;
+  recepientemail.textContent = context.teammate.email;
+  sender.textContent = conversation.recepient.name;
+  senderemail.textContent = conversation.recepient.email;
+
+
   console.log('Inside displayConversationInfo: '+JSON.stringify(context));
   if(contextType === 'multiConversations')
   {
@@ -52,6 +75,11 @@ function displayConversationInfo(context, contextType)
   }
   status.textContent = conversation.status;
   subject.textContent = conversation.subject;
+
+  if(conversation.tags && conversation.tags.length)
+  {
+    tags.textContent = context.conversation.tags.map(function(k) {return k.name}).join(',');
+  }
 
 }
 
