@@ -148,7 +148,9 @@ async function addNewTag() {
     return;
   }
 
-  await latestContext.tag(newTag);
+  let tagsToAdd = [];
+  tagsToAdd.push(newTag);
+  await latestContext.tag(tagsToAdd);
 
   document.getElementById("newTagName").value = "";
 }
@@ -161,8 +163,11 @@ async function removeTag() {
     console.log("removeTag: No tag name entered.");
     return;
   }
+  
+  let tagsToRemove = [];
+  tagsToRemove.push(removeTag);
 
-  await latestContext.untag(removeTag);
+  await latestContext.untag(tagsToRemove);
 
   document.getElementById("removeTagName").value = "";
 }
